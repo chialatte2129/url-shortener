@@ -34,7 +34,7 @@ SECRET_KEY=ABCDEFGHIJKLMNOPQUSTUVWXYZ
 docker-compose up -d
 ```
 
-確定service有正常啟動
+確定docker container有正常啟動
 
 ```
 docker ps
@@ -44,6 +44,7 @@ docker ps
 ```
 docker exec -ti <container_id> python init_db.py
 ```
+服務會啟在 http://127.0.0.1:5000/
 
 停止服務
 ```
