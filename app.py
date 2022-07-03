@@ -3,9 +3,10 @@ from hashids import Hashids
 from flask import Flask, render_template, request, flash, redirect, url_for
 import sqlite3
 import validators
+import os
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'this should be a secret random string'
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY", "MY_SECRET_KEY")
 redis = Redis(host='redis', port=6379, decode_responses=True)
 hashids = Hashids(min_length=4, salt=app.config['SECRET_KEY'])
 
@@ -13,7 +14,7 @@ def get_db_conn():
     conn = sqlite3.connect('database.db')
     conn.row_factory = sqlite3.Row
     return conn
-    
+
 @app.route('/', methods=('GET', 'POST'))
 def index():
     conn = get_db_conn()
@@ -67,4 +68,4 @@ def stats():
     return render_template('stats.html', urls=urls)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=os.environ.get("DEBUG", False))
