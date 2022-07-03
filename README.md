@@ -34,7 +34,7 @@ docker-compose up -d
 ```
 docker ps
 ```
-7. 首次啟動後，執行資料庫初始化。your_container_id請填入上一步複製的container id
+7. 首次啟動後，執行資料庫初始化。 <your_container_id>請填入上一步複製的container id
 ```
 docker exec -ti <your_container_id> python init_db.py
 ```
