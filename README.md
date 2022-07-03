@@ -9,41 +9,38 @@
 
 ## 佈署服務
 
-將專案從Server拉到本機環境
+1. 將專案從Server載到本機環境
 ```
 git clone https://github.com/chialatte2129/url-shortener.git
 ```
-進入專案資料夾
+2. 進入專案資料夾
 ```
 cd url-shortener
 ```
-編輯.env設定
+3. 編輯.env設定，Windows環境可用記事本編輯
 ```
 nano .env
 ```
-
-.env檔填寫如下內容
+4. .env檔填寫如下內容
 ```env
 DEBUG=False
 SECRET_KEY=MY_SECRET_KEY
 ```
-使用docker-compose啟動服務
+5. 使用docker-compose啟動服務
 ```
 docker-compose up -d
 ```
-
-確定docker container有正常啟動
+6. 確定docker container有正常啟動，並複製container id
 ```
 docker ps
 ```
-
-首次啟動後，將資料庫初始化
+7. 首次啟動後，執行資料庫初始化。your_container_id請填入上一步複製的container id
 ```
 docker exec -ti <your_container_id> python init_db.py
 ```
-服務會啟在 http://127.0.0.1:5000/
+8. 服務會啟在 http://127.0.0.1:5000/
 
-停止服務
+9. 停止服務
 ```
 docker-compose down
 ```
