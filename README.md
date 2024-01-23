@@ -14,17 +14,17 @@ A URL shortener service based on `Flask`, implemented using `bootstrap`, `sqlite
 
 1. Submit url to get shorter URL
 <p align="center" width="100%">
-    <img width="70%" src="/public/main_page.png"> 
+    <img width="70%" src="/static/main_page.png"> 
 </p>
 
 2. Show redirection url list
 <p align="center" width="100%">
-    <img width="70%" src="/public/short_url_list.png"> 
+    <img width="70%" src="/static/short_url_list.png"> 
 </p>
 
 3. Analyzed of each url
 <p align="center" width="100%">
-    <img width="70%" src="/public/url_analyze.png"> 
+    <img width="70%" src="/static/url_analyze.png"> 
 </p>
 
 ## Caching
@@ -32,7 +32,7 @@ A URL shortener service based on `Flask`, implemented using `bootstrap`, `sqlite
 For optimal operational efficiency, we minimize database reads during redirection by first checking for records in the redis cache. If not found, we proceed with a database query. For logging, we utilize a Redis Queue, processed by a separate thread, ensuring real-time responses.
 
 <p align="center" width="100%">
-    <img width="70%" src="/public/URL_Shorterner.drawio.png"> 
+    <img width="70%" src="/static/URL_Shorterner.drawio.png"> 
 </p>
 
 ## Environment Requirements
