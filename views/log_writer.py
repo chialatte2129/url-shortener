@@ -33,7 +33,7 @@ def redis_listener():
                         created = click_data['created']
                         
                         conn = get_db_conn()
-                        conn.execute(f"INSERT INTO url_visits (url_id, ip_address, user_agent, created) VALUES ('{id}', '{ip_address}', '{user_agent}', '{created}')")
+                        conn.execute("INSERT INTO url_visits (url_id, ip_address, user_agent, created) VALUES (?, ?, ?, ?)", (id, ip_address, user_agent, created))
                         conn.commit()
                         conn.close()
                 except Exception as e:

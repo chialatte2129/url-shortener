@@ -1,6 +1,6 @@
-from flask import Blueprint, render_template, request, flash, redirect, url_for
+from flask import Blueprint, render_template, request
 from .utils import get_db_conn, init_hashids, get_nearest_days_data
-from datetime import datetime, timedelta
+from datetime import datetime
 
 stats_bp = Blueprint('stats', __name__)
 
@@ -18,14 +18,12 @@ def stats():
         urls.append(url)
     return render_template('stats.html', urls=urls)
 
-
-
 @stats_bp.route('/stats/<string:id>')
 def id_stats(id):
     original_id = init_hashids().decode(id)[0]
     conn = get_db_conn()
-    visit_data_exec = conn.execute(f"SELECT id, ip_address, created FROM url_visits WHERE url_id = ({original_id})").fetchall()
-    target_url_result = conn.execute(f"SELECT original_url, created FROM urls WHERE id = ({original_id})").fetchone()
+    visit_data_exec = conn.execute("SELECT id, ip_address, created FROM url_visits WHERE url_id = ?", (original_id,)).fetchall()
+    target_url_result = conn.execute("SELECT original_url, created FROM urls WHERE id = ?", (original_id,)).fetchone()
     url_data = {
         "target":target_url_result['original_url'],
         "from":request.host_url + id,

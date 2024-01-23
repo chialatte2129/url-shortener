@@ -16,7 +16,7 @@ def index():
         if not validators.url(url):
             flash('Invalid URL')
             return redirect(url_for('index.index'))   
-        url_data = conn.execute(f'INSERT INTO urls (original_url) VALUES ("{url}")')
+        url_data = conn.execute("INSERT INTO urls (original_url) VALUES (?)", (url,))
         conn.commit()
         conn.close()
 
