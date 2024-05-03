@@ -92,6 +92,6 @@ docker exec -ti <your_container_id> python init_db.py
 docker-compose down
 ```
 
-## LICENCE
+## LICENSE
 
-mit
+MIT
